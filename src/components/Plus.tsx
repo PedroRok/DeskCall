@@ -1,9 +1,9 @@
-import Gear from "./Gear";
-
-export default function ShortcutBtn() {
+export default function Plus(props: { setModalActive: Function, active: boolean}) {
     return (
         <div className="cross-btn">
-            <div className="cross">
+            <div
+                onClick={() => props.setModalActive(props.active)}
+                className="cross">
                 <div className="vertical" />
                 <div className="horizontal" />
             </div>

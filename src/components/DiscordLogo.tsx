@@ -1,6 +1,15 @@
+import '../css/Discord.css'
 
+export default function DiscordModal(props: { active: boolean; setActive: Function }) {
+    if (!props.active) return null;
 
-export default function DiscordLogo() {
+    return (
+        <div className="disc-modal">
+        </div>
+    )
+}
+
+export function DiscordLogo() {
     return (
         <svg xmlns="http://www.w3.org/2000/svg"
             viewBox="0,0,256,256" width="50px" height="50px"
