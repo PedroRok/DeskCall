@@ -41,7 +41,7 @@ export default function ShortcutModal(props: { active: boolean, setActive: Funct
                     </div>
                     <div className="modal-body-content-message">
                         <h2>Mensagem</h2>
-                        <textarea defaultValue={"@user, você está sendo chamado por @owner! "} required />
+                        <textarea defaultValue={"@user, você está sendo chamado por @owner!"} required />
                     </div>
 
                 </div>

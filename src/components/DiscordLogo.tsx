@@ -5,6 +5,52 @@ export default function DiscordModal(props: { active: boolean; setActive: Functi
 
     return (
         <div className="disc-modal">
+            <div className="disc-close">
+                <div className="close" onClick={() => props.setActive(false)}>
+                    <div className="close-btn">
+                        <div
+                            onClick={() => props.setActive(false)}
+                            className="cross">
+                            <div className="vertical" />
+                            <div className="horizontal" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="disc-content">
+                <div className="token">
+                    <h2>Token</h2>
+                    <input type='password' name='token' />
+                </div>
+                <div className='disc-props'>
+                    <div className="owner">
+                        <h2>Dono</h2>
+                        <input type='text' name='owner' />
+                    </div>
+                    <div className="channel">
+                        <h2>Canal</h2>
+                        <input type='text' name='channel' />
+                    </div>
+                </div>
+                <div className="disc-options">
+                    <div className="sound">
+                        <input type="checkbox" name='sound' />
+                        <h2>Tocar som</h2>
+                    </div>
+                    <div className="response">
+                        <input type="checkbox" name='response' />
+                        <h2>Botão de resposta</h2>
+                    </div>
+                </div>
+                <div className="disc-footer">
+                    <div className="status-div">
+                        <h3>Status:</h3>
+                        <div className="status-circle" />
+                    </div>
+                    <button>Salvar</button>
+                </div>
+
+            </div>
         </div>
     )
 }
