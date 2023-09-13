@@ -65,7 +65,8 @@
 
 .disc-footer {
     display: flex;
-    justify-content: space-between;
+    margin-top: 10px;
+    justify-content: center;
     align-items: center;
     color: white;
 }
@@ -86,10 +87,6 @@
 .disc-footer button:hover {
     scale: 1.1;
     border: 1px solid #fff;
-}
-
-.disc-footer h3 {
-    margin: 0.5rem;
 }
 
 .status-div {

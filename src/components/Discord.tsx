@@ -1,10 +1,42 @@
+import { useRef, useState } from 'react';
 import '../css/Discord.css'
 
 export default function DiscordModal(props: { active: boolean; setActive: Function }) {
     if (!props.active) return null;
+    const [fillBolean, setFillBolean] = useState(false)
+
+    const token = useRef<HTMLInputElement>(null)
+    const owner = useRef<HTMLInputElement>(null)
+    const channel = useRef<HTMLInputElement>(null)
+    const sound = useRef<HTMLInputElement>(null)
+    const response = useRef<HTMLInputElement>(null)
+
+
+    const test = async () => {
+        if (token.current === null || owner.current === null || channel.current === null || sound.current === null || response.current === null) return console.log('null')
+        if (token.current?.value === '' || owner.current?.value === '' || channel.current?.value === '') {
+            setFillBolean(true)
+            return
+        }
+        const res = await fetch('http://localhost:7000/discmodal', {
+            body: JSON.stringify({
+                token: token.current.value,
+                owner: owner.current.value,
+                channel: channel.current.value,
+                sound: sound.current.checked,
+                response: response.current.checked
+            }),
+            method: 'POST'
+        });
+        if (!res.ok) {
+            return
+        }
+        const data = await res.text();
+    }
 
     return (
         <div className="disc-modal">
+            
             <div className="disc-close">
                 <div className="close" onClick={() => props.setActive(false)}>
                     <div className="close-btn">
@@ -17,37 +49,40 @@ export default function DiscordModal(props: { active: boolean; setActive: Functi
                     </div>
                 </div>
             </div>
+            {fillBolean ? <div className="fill">Preencha todos os campos</div> : null}
             <div className="disc-content">
                 <div className="token">
                     <h2>Token</h2>
-                    <input type='password' name='token' />
+                    <input 
+                    onChange={() => {setFillBolean(false)}}
+                    ref={token} type='password' name='token' />
                 </div>
                 <div className='disc-props'>
                     <div className="owner">
                         <h2>Dono</h2>
-                        <input type='text' name='owner' />
+                        <input
+                        onChange={() => {setFillBolean(false)}}
+                        ref={owner} type='text' name='owner' />
                     </div>
                     <div className="channel">
                         <h2>Canal</h2>
-                        <input type='text' name='channel' />
+                        <input
+                        onChange={() => {setFillBolean(false)}}
+                        ref={channel} type='text' name='channel' />
                     </div>
                 </div>
                 <div className="disc-options">
                     <div className="sound">
-                        <input type="checkbox" name='sound' />
+                        <input ref={sound} type="checkbox" name='sound' />
                         <h2>Tocar som</h2>
                     </div>
                     <div className="response">
-                        <input type="checkbox" name='response' />
+                        <input ref={response} type="checkbox" name='response' />
                         <h2>Botão de resposta</h2>
                     </div>
                 </div>
                 <div className="disc-footer">
-                    <div className="status-div">
-                        <h3>Status:</h3>
-                        <div className="status-circle" />
-                    </div>
-                    <button>Salvar</button>
+                    <button onClick={() => test()}>Salvar</button>
                 </div>
 
             </div>
