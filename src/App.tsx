@@ -6,7 +6,7 @@ import ShortcutBtn from "./components/ShortcutBtn";
 import Plus from "./components/Plus";
 import { useState } from "react";
 import { DiscordProps, type Shortcut } from "./lib/types";
-import { loadShortcuts, createShortcut, loadDiscord } from "./lib/shortcut";
+import { loadShortcuts, createShortcut, loadDiscord, removeShortcut } from "./lib/shortcut";
 import ShortcutModal from "./components/ShortcutModal";
 
 function App() {
@@ -96,9 +96,27 @@ function App() {
       {!discordActive && (modalActive && (
         <ShortcutModal
           onClose={() => setModalActive(false)}
-          onSubmit={(shortcut) => {
+          onSubmit={(sc) => {
+            let exists = false;
+            shortcuts.forEach((s) => {
+              if (s.key === sc.key) {
+                setShortcuts([...shortcuts.filter((s2) => s !== s2), sc])
+                removeShortcut(s);
+                exists = true;
+              }
+            });
             setModalActive(false);
-            createShortcut(shortcut);
+            createShortcut(sc)
+              .then(() => {
+                if (!exists) setShortcuts([...shortcuts, sc]);
+              }
+              )
+          }}
+          onRemove={() => {
+            setModalActive(false);
+            removeShortcut(shortcut).then(() => {
+              setShortcuts(shortcuts.filter((s) => s.key !== shortcut?.key));
+            });
           }}
           shortcut={shortcut}
         />

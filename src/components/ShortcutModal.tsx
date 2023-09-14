@@ -5,10 +5,12 @@ import { Shortcut } from "../lib/types";
 export default function ShortcutModal({
   shortcut,
   onClose,
+  onRemove,
   onSubmit,
 }: {
   shortcut?: Shortcut;
   onClose: () => void;
+  onRemove: () => void;
   onSubmit: (shortcut: Shortcut) => void;
 }) {
   const [fillBolean, setFillBolean] = useState<boolean>(false);
@@ -16,7 +18,7 @@ export default function ShortcutModal({
   const [key, setKey] = useState<string>(shortcut?.key || '');
   const [title, setTitle] = useState<string>(shortcut?.title || '');
   const [marked, setMarked] = useState<string>(shortcut?.marked || '');
-  const [message, setMessage] = useState<string>(shortcut?.message || '');
+  const [message, setMessage] = useState<string>(shortcut?.message || '@user você está sendo chamado por @owner!');
 
   return (
     <div onClick={onClose} className="modal">
@@ -87,9 +89,10 @@ export default function ShortcutModal({
           </div>
         </div>
         <div className="modal-footer">
-          <button onClick={onClose}>Cancelar</button>
+          {shortcut == undefined ?  <button onClick={onClose}>Cancelar</button> : <button className="remove" onClick={onRemove}>Remover</button>}
           <button
-            onClick={() =>
+            onClick={() =>{
+              if (key === '' || title === '' || marked === '' || message === '') return setFillBolean(true)
               onSubmit({
                 key: key,
                 title: title,
@@ -97,6 +100,7 @@ export default function ShortcutModal({
                 message: message,
               })
             }
+          }
           >
             Adicionar
           </button>

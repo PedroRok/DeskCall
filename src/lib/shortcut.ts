@@ -13,6 +13,18 @@ export const loadShortcuts = async () => {
   return res.json();
 }
 
+export const removeShortcut = async (shortcut: Shortcut | undefined) => {
+  if (!shortcut) return;
+  const res = await fetch(`http://localhost:7000/shortcut`, {
+    method: "DELETE",
+    body: JSON.stringify(shortcut),
+  });
+  if (res.status == 404) {
+    throw new Error("Shortcut not found");
+  }
+  return res.json();
+}
+
 
 
 
@@ -23,7 +35,7 @@ export const loadDiscord = async () => {
 
 export const updateDiscord = async (props: DiscordProps) => {
   const res = await fetch("http://localhost:7000/discord", {
-    method: "POST",
+    method: "PUT",
     body: JSON.stringify(props),
   });
   return res.json();
