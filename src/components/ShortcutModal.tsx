@@ -13,10 +13,10 @@ export default function ShortcutModal({
 }) {
   const [fillBolean, setFillBolean] = useState<boolean>(false);
 
-  const [key, setKey] = useState<string>(shortcut?.key || "");
-  const [title, setTitle] = useState<string>(shortcut?.title || "");
-  const [marked, setMarked] = useState<string>(shortcut?.marked || "");
-  const [message, setMessage] = useState<string>(shortcut?.message || "");
+  const [key, setKey] = useState<string>(shortcut?.key || '');
+  const [title, setTitle] = useState<string>(shortcut?.title || '');
+  const [marked, setMarked] = useState<string>(shortcut?.marked || '');
+  const [message, setMessage] = useState<string>(shortcut?.message || '');
 
   return (
     <div onClick={onClose} className="modal">
@@ -26,9 +26,9 @@ export default function ShortcutModal({
             <div className="fill">Preencha todos os campos corretamente</div>
           ) : null}
           <input
-            onChange={() => {
+            onChange={(ev) => {
               setFillBolean(false);
-              setTitle(title);
+              setTitle(ev.target.value);
             }}
             type="text"
             maxLength={16}
