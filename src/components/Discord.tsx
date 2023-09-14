@@ -14,10 +14,8 @@ export default function DiscordModal(props: { active: boolean; setActive: Functi
 
     const test = async () => {
         if (token.current === null || owner.current === null || channel.current === null || sound.current === null || response.current === null) return console.log('null')
-        if (token.current?.value === '' || owner.current?.value === '' || channel.current?.value === '') {
-            setFillBolean(true)
-            return
-        }
+        if (token.current?.value === '' || owner.current?.value === '' || channel.current?.value === '') return setFillBolean(true)
+        
         const res = await fetch('http://localhost:7000/discmodal', {
             body: JSON.stringify({
                 token: token.current.value,
