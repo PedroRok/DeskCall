@@ -5,14 +5,13 @@ import { DiscordProps } from '../lib/types';
 export default function DiscordModal({
     props,
     onClose,
-     onSubmit
+    onSubmit
 }: {
     props?: DiscordProps;
     onClose: () => void;
     onSubmit: (discordProps: DiscordProps) => void;
 }) {
     const [fillBolean, setFillBolean] = useState<boolean>(false);
-
     const [token, setToken] = useState(props?.token || '')
     const [owner, setOwner] = useState(props?.owner || '')
     const [channel, setChannel] = useState(props?.channel || '')
@@ -97,7 +96,8 @@ export default function DiscordModal({
                 </div>
                 <div className="disc-footer">
                     <button 
-                    onClick={() =>
+                    onClick={() => {
+                        if (token === '' || owner === '' || channel === '') return setFillBolean(true)
                         onSubmit({
                             token: token,
                             owner: owner,
@@ -106,6 +106,7 @@ export default function DiscordModal({
                             response: response
                         })
                     }
+                }
                 >
                     Salvar
                     </button>
