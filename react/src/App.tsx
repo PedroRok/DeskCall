@@ -1,13 +1,14 @@
 import "./css/App.css";
 import { useEffect } from "react";
-import DiscordModal, { DiscordLogo } from "./components/Discord";
-import GithubLogo from "./components/GithubLogo";
+import DiscordModal from "./components/Discord";
+import DiscordLogo from "./assets/discordIcon";
 import ShortcutBtn from "./components/ShortcutBtn";
 import Plus from "./components/Plus";
 import { useState } from "react";
 import { DiscordProps, type Shortcut } from "./lib/types";
 import { loadShortcuts, createShortcut, loadDiscord, removeShortcut } from "./lib/shortcut";
 import ShortcutModal from "./components/ShortcutModal";
+import GithubLogo from "./assets/GithubLogo";
 
 function App() {
   const [modalActive, setModalActive] = useState<boolean>(false);

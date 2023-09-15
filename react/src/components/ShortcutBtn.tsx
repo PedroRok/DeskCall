@@ -1,4 +1,4 @@
-import Gear from "./Gear";
+import Gear from "../assets/gear";
 import { Shortcut } from "../lib/types";
 
 export default function ShortcutBtn(props: {
