@@ -6,7 +6,7 @@ export const createShortcut = async (shortcut: Shortcut) => {
     body: JSON.stringify(shortcut),
   });
   return res.json();
-};
+}
 
 export const loadShortcuts = async () => {
   const res = await fetch("http://localhost:7000/shortcuts");
@@ -24,6 +24,14 @@ export const removeShortcut = async (shortcut: Shortcut | undefined) => {
   }
   return res.json();
 }
+
+export const sendShortcut = async (key: string) => {
+  const res = await fetch("http://localhost:7000/shortcut/key", {
+    method: "POST",
+    body: key,
+  });
+  return res.text();
+};
 
 
 

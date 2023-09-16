@@ -3,6 +3,7 @@ import { Shortcut } from "../lib/types";
 
 export default function ShortcutBtn(props: {
   shortcut: Shortcut;
+  onGearClick: () => void;
   onClick: () => void;
 }) {
   return (
@@ -10,7 +11,7 @@ export default function ShortcutBtn(props: {
       <h1>{props.shortcut.title}</h1>
       <div
         onClick={() => {
-          console.log("clicked");
+          props.onClick();
         }}
         className="shortcut-btn"
       >
@@ -19,7 +20,7 @@ export default function ShortcutBtn(props: {
           <div
             onClick={(e) => {
               e.stopPropagation();
-              props.onClick();
+              props.onGearClick();
             }}
             className="gear-btn"
           >

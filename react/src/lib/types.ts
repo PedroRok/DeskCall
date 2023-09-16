@@ -8,7 +8,5 @@ export type Shortcut = {
 export type DiscordProps = {
     token: string;
     owner: string;
-    channel: string;
     sound: boolean;
-    response: boolean;
 }

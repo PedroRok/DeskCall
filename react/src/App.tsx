@@ -6,9 +6,9 @@ import ShortcutBtn from "./components/ShortcutBtn";
 import Plus from "./components/Plus";
 import { useState } from "react";
 import { DiscordProps, type Shortcut } from "./lib/types";
-import { loadShortcuts, createShortcut, loadDiscord, removeShortcut } from "./lib/shortcut";
+import { loadShortcuts, createShortcut, loadDiscord, removeShortcut, updateDiscord, sendShortcut } from "./lib/shortcut";
 import ShortcutModal from "./components/ShortcutModal";
-import GithubLogo from "./assets/GithubLogo";
+import GithubLogo from "./assets/githubLogo";
 
 function App() {
   const [modalActive, setModalActive] = useState<boolean>(false);
@@ -62,6 +62,7 @@ function App() {
           onSubmit={(discord) => {
             setDiscordActive(false);
             setDiscord(discord);
+            updateDiscord(discord);
           }}
           props={discord}
           
@@ -73,9 +74,12 @@ function App() {
           <ShortcutBtn
             key={shortcut.key}
             shortcut={shortcut}
-            onClick={() => {
+            onGearClick={() => {
               setModalActive(true);
               setShortcut(shortcut);
+            }}
+            onClick={() => {
+              sendShortcut(shortcut.key);
             }}
           />
         ))}

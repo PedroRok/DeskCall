@@ -14,9 +14,7 @@ export default function DiscordModal({
     const [fillBolean, setFillBolean] = useState<boolean>(false);
     const [token, setToken] = useState(props?.token || '')
     const [owner, setOwner] = useState(props?.owner || '')
-    const [channel, setChannel] = useState(props?.channel || '')
     const [sound, setSound] = useState(props?.sound || false)
-    const [response, setResponse] = useState(props?.response || false)
 
     return (
         <div className="disc-modal">
@@ -37,7 +35,7 @@ export default function DiscordModal({
             {fillBolean ? <div className="fill">Preencha todos os campos</div> : null}
             <div className="disc-content">
                 <div className="token">
-                    <h2>Token</h2>
+                    <h2>Wekbhook</h2>
                     <input 
                     onChange={(ev) => {
                         setFillBolean(false)
@@ -46,7 +44,7 @@ export default function DiscordModal({
                         defaultValue={token}
                         />
                 </div>
-                <div className='disc-props'>
+                <div className='disc-content'>
                     <div className="owner">
                         <h2>Dono</h2>
                         <input
@@ -55,16 +53,6 @@ export default function DiscordModal({
                             setOwner(ev.target.value)
                             }} type='text' name='owner'
                             defaultValue={owner}
-                            />
-                    </div>
-                    <div className="channel">
-                        <h2>Canal</h2>
-                        <input
-                        onChange={(ev) => {
-                            setFillBolean(false)
-                            setChannel(ev.target.value)
-                            }} type='text' name='channel' 
-                            defaultValue={channel}
                             />
                     </div>
                 </div>
@@ -81,29 +69,15 @@ export default function DiscordModal({
                          />
                         <h2>Tocar som</h2>
                     </div>
-                    <div className="response">
-                        <input 
-                        type="checkbox" 
-                        name='response'
-                        onChange={(ev) => {
-                            setFillBolean(false)
-                            setResponse(ev.target.checked)
-                            }}
-                        defaultChecked={response}
-                        />
-                        <h2>Botão de resposta</h2>
-                    </div>
                 </div>
                 <div className="disc-footer">
                     <button 
                     onClick={() => {
-                        if (token === '' || owner === '' || channel === '') return setFillBolean(true)
+                        if (token === '' || owner === '') return setFillBolean(true)
                         onSubmit({
                             token: token,
                             owner: owner,
-                            channel: channel,
                             sound: sound,
-                            response: response
                         })
                     }
                 }
