@@ -93,7 +93,7 @@ function App() {
 
       <div className="console">
         <h3>Console</h3>
-        <div className="console-content">[KeyPress] F15</div>
+        <div className="console-content">Em desenvolvimento...</div>
       </div>
       <p className="export">
         Clique aqui para exportar o console para <code>console.txt</code>

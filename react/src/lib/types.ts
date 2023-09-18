@@ -6,7 +6,7 @@ export type Shortcut = {
 }
 
 export type DiscordProps = {
-    token: string;
+    webhook: string;
     owner: string;
     sound: boolean;
 }

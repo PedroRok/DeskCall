@@ -12,7 +12,7 @@ export default function DiscordModal({
     onSubmit: (discordProps: DiscordProps) => void;
 }) {
     const [fillBolean, setFillBolean] = useState<boolean>(false);
-    const [token, setToken] = useState(props?.token || '')
+    const [webhook, setWebhook] = useState(props?.webhook || '')
     const [owner, setOwner] = useState(props?.owner || '')
     const [sound, setSound] = useState(props?.sound || false)
 
@@ -39,9 +39,9 @@ export default function DiscordModal({
                     <input 
                     onChange={(ev) => {
                         setFillBolean(false)
-                        setToken(ev.target.value)
+                        setWebhook(ev.target.value)
                         }} type='password' name='token' 
-                        defaultValue={token}
+                        defaultValue={webhook}
                         />
                 </div>
                 <div className='disc-content'>
@@ -73,9 +73,9 @@ export default function DiscordModal({
                 <div className="disc-footer">
                     <button 
                     onClick={() => {
-                        if (token === '' || owner === '') return setFillBolean(true)
+                        if (webhook === '' || owner === '') return setFillBolean(true)
                         onSubmit({
-                            token: token,
+                            webhook: webhook,
                             owner: owner,
                             sound: sound,
                         })
