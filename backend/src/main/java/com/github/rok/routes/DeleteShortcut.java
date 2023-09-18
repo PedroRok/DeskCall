@@ -2,6 +2,7 @@ package com.github.rok.routes;
 
 import com.github.rok.Shortcut;
 import com.github.rok.ShortcutManager;
+import com.github.rok.utils.Config;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;
@@ -19,6 +20,7 @@ public class DeleteShortcut implements Handler {
         }
         Shortcut shortcut = first.get();
         ShortcutManager.shortcut.remove(shortcut);
+        Config.saveShortcutConfig();
         ctx.json(shortcut);
     }
 }

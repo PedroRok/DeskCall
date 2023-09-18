@@ -46,7 +46,7 @@ public class DiscordManager {
 
         if (discord.sound())
             try {
-                SoundUtils.playSound("assets/message.wav");
+                SoundUtils.playSound();
             } catch (Exception e) {
                 e.printStackTrace();
             }

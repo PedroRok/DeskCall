@@ -22,8 +22,6 @@ public class Main implements NativeKeyListener {
 
     public static void main(String[] args) {
 
-
-
         Config.importDiscordConfig();
         Config.importShortcutConfig();
         try {
